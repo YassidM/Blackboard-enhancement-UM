@@ -1,37 +1,70 @@
 {
-	"manifest_version": 2,
-	"name": "__MSG_appName__",
-	"version": "1.3",
-	"default_locale": "en",
-	"description": "__MSG_appDescription__",
-	"permissions": [
-		"storage"
-	],
-	"icons": {
-		"16": "images/icon-16.png",
-		"32": "images/icon-32.png",
-		"48": "images/icon-48.png",
-		"128": "images/icon-128.png"
-	},
-	"content_scripts": [
-		{
-			"matches": [
-				"http://*.edu/*",
-				"https://*.edu/*"
-			],
-			"include_globs": [
-				"https://bb.*.edu/*",
-				"http://bb.*.edu/*",
-				"https://blackboard.*.edu/*",
-				"http://blackboard.*.edu/*"
-			],
-			"js": [ "scripts/enhance.js" ],
-			"run_at": "document_end"
-		}
-	],
-	"options_page": "html/options.html",
-	"background": {
-		"page": "html/background.html",
-		"persistent": false
-	}
+  "manifest_version": 3,
+  "name": "__MSG_appName__",
+  "version": "1.3",
+  "default_locale": "en",
+  "description": {
+    "message": "__MSG_appDescription__"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "icons": [
+    {
+      "src": "images/icon-16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icon-48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    }
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*.edu/*",
+	"http://*.*.edu/*",
+	"https://*.*.edu/*",
+        "https://*.edu/*"
+      ],
+      "css": [],
+      "js": [
+        {
+          "src": "scripts/enhance.js",
+          "type": "module"
+        }
+      ],
+      "run_at": "document_end",
+      "all_frames": false,
+      "match_about_blank": true,
+      "include_globs": [
+        "https://bb.*.edu/*",
+        "http://bb.*.edu/*",
+        "https://blackboard.*.edu/*",
+        "http://blackboard.*.edu/*",
+        "http://courses.*.edu/*"
+	"http://courses.miami.edu/*"
+      ]
+    }
+  ],
+  "options_ui": {
+    "page": "html/options.html",
+    "open_in_tab": false
+  },
+  "background": {
+    "service_worker": "background.js",
+    "persistent": false
+  }
 }
