@@ -54,7 +54,7 @@
         "http://bb.*.edu/*",
         "https://blackboard.*.edu/*",
         "http://blackboard.*.edu/*",
-        "http://courses.*.edu/*"
+        "http://courses.*.edu/*",
 	"http://courses.miami.edu/*"
       ]
     }
